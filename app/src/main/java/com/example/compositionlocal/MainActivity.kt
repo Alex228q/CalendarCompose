@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
@@ -30,12 +31,15 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -93,6 +98,12 @@ fun DaysOfWeek() {
 
 @Composable
 fun Calendar() {
+
+    var selectedButton by remember {
+        mutableIntStateOf(0)
+    }
+
+    val handleChangeButton = { numButton: Int -> selectedButton = numButton }
     var isVisibleCurrentDate by remember { mutableStateOf(false) }
     var currentYearMonth by remember {
         mutableStateOf(YearMonth.now(ZoneId.systemDefault()))
@@ -115,11 +126,13 @@ fun Calendar() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(10.dp),
+            .padding(vertical = 22.dp, horizontal = 12.dp),
     ) {
 
-
-        Text(text = currentYearMonth.month.toString())
+        MonthAndYear(currentYearMonth)
+        HorizontalDivider(
+            thickness = 2.dp
+        )
         Spacer(Modifier.height(16.dp))
 
         DaysOfWeek()
@@ -164,6 +177,7 @@ fun Calendar() {
                                         YearMonth.now(ZoneId.systemDefault()) != currentYearMonth
 
                                 }
+
                                 dragAmount < 0 -> {
                                     currentYearMonth = currentTarget.plusMonths(1)
                                     offsetX -= dragAmount
@@ -193,11 +207,6 @@ fun Calendar() {
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
                             .size(50.dp)
-//                            .border(
-//                                width = 1.dp,
-//                                color = Color.Black,
-//                                shape = RoundedCornerShape(4.dp)
-//                            ),
                     ) {
                         val indexPlusOne = index + 1
                         Text(
@@ -241,9 +250,72 @@ fun Calendar() {
                 }
             }
         }
+        Spacer(modifier = Modifier.weight(1f))
+        ButtonsBlock(selectedButton, handleChangeButton)
     }
 }
 
+@Composable
+fun MonthAndYear(currentYearMonth: YearMonth) {
+    val month = when (currentYearMonth.monthValue) {
+        1 -> "ЯНВАРЬ"
+        2 -> "ФЕВРАЛЬ"
+        3 -> "МАРТ"
+        4 -> "АПРЕЛЬ"
+        5 -> "МАЙ"
+        6 -> "ИЮНЬ"
+        7 -> "ИЮЛЬ"
+        8 -> "АВГУСТ"
+        9 -> "СЕНТЯБРЬ"
+        10 -> "ОКТЯБРЬ"
+        11 -> "НОЯБРЬ"
+        else -> "ДЕКАБРЬ"
+    }
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp)
+    ) {
+
+        Text(
+            text = month,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.W500
+        )
+        Text(
+            text = currentYearMonth.year.toString(),
+            fontSize = 24.sp,
+            fontWeight = FontWeight.W500
+        )
+    }
+}
+
+@Composable
+fun ButtonsBlock(selectedButton: Int, onChange: (Int) -> Unit) {
+    val buttons = listOf(1, 2, 3, 4)
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 18.dp)
+    ) {
+        buttons.forEachIndexed { index, text ->
+            OutlinedButton(
+                onClick = { onChange(index) },
+                border = BorderStroke(
+                    2.dp,
+                    if (selectedButton == index) MaterialTheme.colorScheme.primary else Color.Transparent
+                ),
+            ) {
+                Text(
+                    text = text.toString(),
+                    fontSize = if (selectedButton == index) 22.sp else 18.sp
+                )
+            }
+        }
+    }
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
