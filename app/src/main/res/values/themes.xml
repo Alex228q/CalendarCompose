@@ -2,4 +2,5 @@
 <resources>
 
     <style name="Theme.CompositionLocal" parent="android:Theme.Material.Light.NoActionBar" />
+
 </resources>
