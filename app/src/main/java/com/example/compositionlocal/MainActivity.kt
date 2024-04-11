@@ -410,21 +410,3 @@ fun MonthAndYear(currentYearMonth: YearMonth, onYearTap: () -> Unit) {
     }
 }
 
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun GreetingPreview() {
-//    CompositionLocalTheme(
-//        darkTheme = false,
-//        dynamicColor = false
-//
-//    ) {
-//        Surface(
-//            modifier = Modifier.fillMaxSize(),
-//            color = MaterialTheme.colorScheme.background
-//        ) {
-//
-//        }
-//    }
-//}
-
