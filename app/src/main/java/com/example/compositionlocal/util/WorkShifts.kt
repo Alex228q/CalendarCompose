@@ -11,6 +11,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 3)
         3 -> LocalDate.of(2024, 3, 5)
         4 -> LocalDate.of(2024, 3, 7)
+        5 -> LocalDate.of(2024, 3, 9)
         else -> throw Exception("bad team")
 
     }
@@ -19,6 +20,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 4)
         3 -> LocalDate.of(2024, 3, 6)
         4 -> LocalDate.of(2024, 3, 8)
+        5 -> LocalDate.of(2024, 3, 10)
         else -> throw Exception("bad team")
 
     }
@@ -27,6 +29,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 5)
         3 -> LocalDate.of(2024, 3, 7)
         4 -> LocalDate.of(2024, 3, 9)
+        5 -> LocalDate.of(2024, 3, 11)
         else -> throw Exception("bad team")
 
     }
@@ -35,6 +38,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 6)
         3 -> LocalDate.of(2024, 3, 8)
         4 -> LocalDate.of(2024, 3, 10)
+        5 -> LocalDate.of(2024, 3, 12)
         else -> throw Exception("bad team")
 
     }
@@ -43,6 +47,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 9)
         3 -> LocalDate.of(2024, 3, 11)
         4 -> LocalDate.of(2024, 3, 13)
+        5 -> LocalDate.of(2024, 3, 15)
         else -> throw Exception("bad team")
 
     }
@@ -51,6 +56,7 @@ class WorkShifts(
         2 -> LocalDate.of(2024, 3, 10)
         3 -> LocalDate.of(2024, 3, 12)
         4 -> LocalDate.of(2024, 3, 14)
+        5 -> LocalDate.of(2024, 3, 16)
         else -> throw Exception("bad team")
 
     }

@@ -134,7 +134,7 @@ fun ButtonsBlock(
     onChangeTeam: (Int) -> Unit,
     onUpdateSh: (Int) -> Unit
 ) {
-    val buttons = listOf(1, 2, 3, 4)
+    val buttons = listOf(1, 2, 3, 4, 5)
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -289,8 +289,12 @@ fun Calendar(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
                             .size(50.dp)
+                            .border(
+                                shape = RoundedCornerShape(10),
+                                width = if (dayInMonth == currentDate) 2.dp else 0.dp,
+                                color = if (dayInMonth == currentDate) MaterialTheme.colorScheme.primary else Color.Transparent
+                            )
                     ) {
-
                         val color = when (dayInMonth.toString()) {
                             in days -> Color(0Xff6FF089)
                             in evening -> Color(0XFF4FBBFF)
@@ -303,9 +307,9 @@ fun Calendar(
                         ) {
                             Text(
                                 style = MaterialTheme.typography.titleMedium,
-                                fontSize = 20.sp,
+                                fontSize = 22.sp,
                                 text = indexPlusOne.toString(),
-                                color = if (currentDate == dayInMonth) Color.Red else MaterialTheme.colorScheme.onPrimary
+                                color =  MaterialTheme.colorScheme.onPrimary
                             )
                             HorizontalDivider(
                                 thickness = 4.dp,
