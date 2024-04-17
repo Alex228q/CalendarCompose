@@ -151,7 +151,8 @@ fun ButtonsBlock(
                 border = BorderStroke(
                     width = 3.dp,
                     color = if (selectedButton - 1 == index) MaterialTheme.colorScheme.primary else Color.Transparent
-                )
+                ),
+                shape = RoundedCornerShape(15)
             ) {
                 Text(
                     text = text.toString(),
@@ -290,7 +291,7 @@ fun Calendar(
                         modifier = Modifier
                             .size(50.dp)
                             .border(
-                                shape = RoundedCornerShape(10),
+                                shape = RoundedCornerShape(15),
                                 width = if (dayInMonth == currentDate) 2.dp else 0.dp,
                                 color = if (dayInMonth == currentDate) MaterialTheme.colorScheme.primary else Color.Transparent
                             )
