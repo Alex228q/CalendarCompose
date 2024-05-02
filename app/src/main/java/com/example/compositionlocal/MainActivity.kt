@@ -236,6 +236,8 @@ fun Calendar(
         )
         { currentTarget ->
             LazyVerticalGrid(
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
                 columns = GridCells.Fixed(7),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -259,8 +261,7 @@ fun Calendar(
                             }
                         }
                     },
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
+
             ) {
                 items(emptyCells) {
                     Box(
