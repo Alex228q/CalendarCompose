@@ -148,7 +148,7 @@ fun ButtonsBlock(
                     width = 3.dp,
                     color = if (selectedButton - 1 == index) MaterialTheme.colorScheme.primary else Color.Transparent
                 ),
-                shape = RoundedCornerShape(15)
+                shape = RoundedCornerShape(26)
             ) {
                 Text(
                     text = text.toString(),
