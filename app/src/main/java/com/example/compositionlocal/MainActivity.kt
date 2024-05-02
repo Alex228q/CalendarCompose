@@ -8,7 +8,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -90,7 +89,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun DaysOfWeek() {
     val days = listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС")
@@ -111,13 +109,11 @@ fun DaysOfWeek() {
     }
 }
 
-
 @Composable
 fun MainScreen(sp: SharedPreferences) {
     var numberOfTeam by remember {
         mutableIntStateOf(sp.getInt("crew", 1))
     }
-
     val handleChangeTeam = { team: Int -> numberOfTeam = team }
     val workShifts = WorkShifts(numberOfTeam)
     val days = workShifts.getDays()
@@ -163,6 +159,7 @@ fun ButtonsBlock(
         }
     }
 }
+
 
 @Composable
 fun Calendar(
@@ -228,22 +225,13 @@ fun Calendar(
             targetState = currentYearMonth,
             transitionSpec = {
                 if (targetState > initialState) {
-                    slideInHorizontally(
-                        animationSpec = tween(easing = LinearOutSlowInEasing),
-                        initialOffsetX = { height -> height }
-                    ) togetherWith slideOutHorizontally(
-                        targetOffsetX = { height -> -height }
-                    )
+                    slideInHorizontally { it } + fadeIn() togetherWith
+                            slideOutHorizontally { -it } + fadeOut()
                 } else {
-                    slideInHorizontally(
-                        animationSpec = tween(easing = LinearOutSlowInEasing),
-                        initialOffsetX = { height -> -height }
-                    ) togetherWith slideOutHorizontally(
-                        targetOffsetX = { height -> height }
-                    )
-                }.using(
-                    SizeTransform(clip = false)
-                )
+                    slideInHorizontally { -it } + fadeIn() togetherWith
+                            slideOutHorizontally { it } + fadeOut()
+
+                }.using(SizeTransform(clip = false))
             }
         )
         { currentTarget ->
@@ -310,7 +298,7 @@ fun Calendar(
                                 style = MaterialTheme.typography.titleMedium,
                                 fontSize = 22.sp,
                                 text = indexPlusOne.toString(),
-                                color =  MaterialTheme.colorScheme.onPrimary
+                                color = MaterialTheme.colorScheme.onPrimary
                             )
                             HorizontalDivider(
                                 thickness = 4.dp,
@@ -414,4 +402,3 @@ fun MonthAndYear(currentYearMonth: YearMonth, onYearTap: () -> Unit) {
         )
     }
 }
-
