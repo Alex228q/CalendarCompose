@@ -153,7 +153,7 @@ fun ButtonsBlock(
                 Text(
                     text = text.toString(),
                     color = if (selectedButton - 1 == index) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onPrimary,
-                    fontSize = 24.sp
+                    fontSize = 26.sp
                 )
             }
         }
@@ -297,7 +297,7 @@ fun Calendar(
                         ) {
                             Text(
                                 style = MaterialTheme.typography.titleMedium,
-                                fontSize = 22.sp,
+                                fontSize = 24.sp,
                                 text = indexPlusOne.toString(),
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
