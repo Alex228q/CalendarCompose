@@ -390,7 +390,8 @@ fun MonthAndYear(currentYearMonth: YearMonth, onYearTap: () -> Unit) {
             color = MaterialTheme.colorScheme.onPrimary,
             text = month,
             fontSize = 26.sp,
-            fontWeight = FontWeight.W500
+            fontWeight = FontWeight.W500,
+
         )
         Text(
             color = MaterialTheme.colorScheme.primary,
