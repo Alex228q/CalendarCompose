@@ -135,7 +135,7 @@ fun ButtonsBlock(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 18.dp)
+            .padding(horizontal = 7.dp, vertical = 18.dp)
     ) {
         buttons.forEachIndexed { index, text ->
             OutlinedButton(
