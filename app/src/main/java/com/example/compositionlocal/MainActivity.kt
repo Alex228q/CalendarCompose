@@ -135,7 +135,7 @@ fun ButtonsBlock(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 7.dp, vertical = 18.dp)
+            .padding(vertical = 22.dp)
     ) {
         buttons.forEachIndexed { index, text ->
             OutlinedButton(
@@ -297,7 +297,7 @@ fun Calendar(
                         ) {
                             Text(
                                 style = MaterialTheme.typography.titleMedium,
-                                fontSize = 24.sp,
+                                fontSize = 22.sp,
                                 text = indexPlusOne.toString(),
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
